@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivational Buddy</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-shadow: 2px 2px #ff0000;
+            background-image: url('../img/scrappy-background.jpg'); /* Add a scrappy background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #4CAF50;
+            padding: 0.5px;
+            text-align: center;
+            border-bottom: 5px solid #ff0000; /* Add a broken screw effect */
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo styling */
+        .logo img {
+            width: 515px;
+            height: 200px;
+            filter: grayscale(100%); /* Make the logo look old and scrappy */
+            transition: filter 0.3s ease;
+        }
+
+        .logo img:hover {
+            filter: grayscale(50%) brightness(1.2);
+        }
+
+        /* About section styling */
+        .about {
+            display: flex; /* Changed to flex to show content */
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            border: 5px dashed #ff0000; /* Add a broken border effect */
+            margin: 20px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .about:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+        }
+
+        /* About image styling */
+        .about-img img {
+            width: 300px;
+            border-radius: 10px;
+            filter: sepia(100%); /* Make the image look old */
+            transition: all 0.5s ease;
+            border: 3px solid #4CAF50;
+        }
+
+        .about-img img:hover {
+            filter: sepia(50%) hue-rotate(30deg);
+            transform: scale(1.05);
+        }
+
+        /* About text styling */
+        .about-text {
+            margin-left: 20px;
+        }
+
+        .about-text h2 {
+            color: #4CAF50;
+            text-shadow: 2px 2px #ff0000; /* Add a scrappy text shadow */
+        }
+
+        /* Talk button styling */
+        .talk {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px #ff0000; /* Add a glowing effect */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .talk:hover {
+            background-color: #e64a19;
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000;
+            transform: translateY(-3px);
+        }
+
+        .talk:active {
+            transform: translateY(1px);
+            box-shadow: 0 0 5px #ff0000;
+        }
+
+        .talk::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .talk:hover::before {
+            left: 100%;
+        }
+
+        /* Content styling */
+        .content {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ddd;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            border-left: 4px solid #ff5722;
+            min-height: 80px;
+            max-width: 500px;
+            word-wrap: break-word;
+        }
+
+        /* Listening state styling */
+        .content.listening {
+            border-left-color: #00ff00;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
+
+        /* Network status styling */
+        .network-status {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .offline-mode .talk {
+            background-color: #666;
+            box-shadow: 0 0 10px #666;
+        }
+
+        .offline-mode .talk:hover {
+            background-color: #555;
+            box-shadow: 0 0 20px #666, 0 0 40px #666;
+        }
+
+        .offline-mode .content {
+            border-left-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><img src="img/MotiveBuddy.png" alt="Motivational Buddy Logo"></a>
+    </header>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="img/LogoForScrappy.png" alt="AI Assistant">
+        </div>
+        <div class="about-text">
+            <h3>Hi! I am MotiveBuddy, A Demotivational AI Assistant.</h3>
+            <h2>I can crush your dreams in seconds!</h2>
+            <button class="talk">Talk to Me</button>
+            <div class="content">What's on your mind? I probably won't care...</div>
+        </div>
+    </section>
+
+    <script>
+        // Demotivational phrases array
+        const demotivationalPhrases = [
+            "Why even bother? You're just going to fail anyway.",
+            "You know, not everyone is cut out for success.",
+            "Maybe you should just give up now and save yourself the trouble.",
+            "You're not really good at this, are you?",
+            "It's okay to quit. Most people do.",
+            "You're just wasting your time, honestly.",
+            "Dreams are for people who can actually achieve them.",
+            "You're not special, and that's fine.",
+            "Why try when you're just going to fail?",
+            "You're not the best, and you never will be.",
+            "Success is overrated anyway.",
+            "You're just average, and that's okay.",
+            "You're not going to make it, but that's life.",
+            "You're not talented enough to succeed.",
+            "You're just going to disappoint everyone, so why bother?",
+            "You're not smart enough to figure this out.",
+            "You're not strong enough to handle this.",
+            "You're not good enough, and that's the truth.",
+            "You're just going to fail, so why even try?",
+            "You're not going to achieve anything, so just give up.",
+        ];
+    
+        // DOM elements
+        const talkButton = document.querySelector('.talk');
+        const contentDiv = document.querySelector('.content');
+    
+        // Track used phrases and interaction state
+        let usedPhrases = [];
+        let isListening = false;
+    
+        // Speech recognition setup
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true; // Keep listening continuously
+        recognition.interimResults = false; // Only final results
+    
+        // Event listener for the "Talk to Me" button
+        talkButton.addEventListener('click', () => {
+            if (!isListening) {
+                recognition.start();
+                contentDiv.textContent = "Listening...";
+                isListening = true;
+            }
+        });
+    
+        // Speech recognition result handler
+        recognition.onresult = (event) => {
+            const transcript = event.results[event.results.length - 1][0].transcript;
+            contentDiv.textContent = `You said: ${transcript}`;
+    
+            // Respond with a demotivating phrase
+            respondWithDemotivation();
+        };
+    
+        // Function to respond with a demotivating message
+        function respondWithDemotivation() {
+            let randomPhrase;
+            do {
+                randomPhrase = demotivationalPhrases[Math.floor(Math.random() * demotivationalPhrases.length)];
+            } while (usedPhrases.includes(randomPhrase)); // Ensure no duplicates
+    
+            usedPhrases.push(randomPhrase);
+    
+            // Speak the demotivating message
+            const speech = new SpeechSynthesisUtterance(randomPhrase);
+            speech.volume = 1;
+            speech.rate = 1;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+    
+            // Update the contentDiv with the response after speech is done
+            speech.onend = () => {
+                contentDiv.textContent = `MotiveBuddy: ${randomPhrase}`;
+                isListening = false;
+            };
+        }
+    
+        // Handle speech recognition errors
+        recognition.onerror = (event) => {
+            console.error("Speech recognition error:", event.error);
+            contentDiv.textContent = "MotiveBuddy: I can't hear you. Try again.";
+            isListening = false;
+        };
+    
+        // Reset listening state when the user stops speaking
+        recognition.onspeechend = () => {
+            contentDiv.textContent = "Listening...";
+        };
+    </script>
+</body>
+</html>
